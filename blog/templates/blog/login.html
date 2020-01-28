@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+    <form class="auth-form" method="POST">
+        {% csrf_token %}
+        
+        <div class="title">
+            LOGIN    
+        </div>
+        
+        <div class="form-container">
+            <div>
+                <input class="text-form" id="username" type="text" name="username" placeholder="Username" />
+            </div>
+            <div>
+                <input class="text-form" id="password" type="password" name="password" placeholder="Password" />
+            </div>
+        </div>
+        
+        <div>
+            <input class="button" type="submit" value="로그인"/>
+        </div>
+    </form>
+{% endblock %}
