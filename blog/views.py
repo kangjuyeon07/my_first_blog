@@ -72,4 +72,20 @@ def user_signup(request):
     return render(request, "blog/signup.html")
     
     
+def post_edit(request, pk):
     
+    post = Post.objects.get(id=pk)
+    
+    if request.method == "POST":
+        
+        title=request.POST["title"]
+        text=request.POST["text"]
+        
+        post.title = title
+        post.text = text
+        
+        post.save()
+        
+        return redirect("post_detail", pk=post.id)
+    
+    return render(request,"blog/post_edit.html", {"post": post})

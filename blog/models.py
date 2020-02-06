@@ -3,12 +3,20 @@ from django.conf import settings
 from django.utils import timezone
 
 
+class Category(models.Model):
+    
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    
+
 class Post(models.Model):
     
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+    
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, default=None, null=True, blank=True)
     
     title = models.CharField(max_length=200)
     

@@ -7,3 +7,14 @@
         <div class="body">{{ post_detail.text }}</div>
     </div>
 {% endblock %}
+
+{% block script %}    
+    <script>
+        shortcuts["e"] = function (e) {
+            e.preventDefault();
+            const post_id = {{ post_detail.id }};
+            document.location.href = "/post/" + post_id + "/edit/";
+        }    
+        
+    </script>
+{% endblock %}

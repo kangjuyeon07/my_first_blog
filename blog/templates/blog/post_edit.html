@@ -5,11 +5,11 @@
         {% csrf_token %}
         <div>
             <label for="title">글 제목</label>
-            <input id="title" type="text" name="title" placeholder="Title" />
+            <input id="title" type="text" name="title" placeholder="Title" value="{{ post.title }}"/>
         </div>
         <div>
             <label for="text">글 본문</label>
-            <input id="title" type="text" name="text" placeholder="Text" />
+            <input id="title" type="text" name="text" placeholder="Text" value="{{ post.text }}"/>
         </div>
         <div>
             <input type="submit" value="저장"/>
@@ -25,4 +25,3 @@
         }
     </script>
 {% endblock %}
-
