@@ -2,7 +2,12 @@ from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Category
+
+def add_params_to_context(request):
+    categories = Category.objects.all()
+    return {"categories": categories}
+
 
 def post_list(request):
     post_list = Post.objects.all().order_by('-id')
@@ -21,16 +26,25 @@ def post_write(request):
         form_data = request.POST
         
         if form_data["title"] !="" and form_data["text"]  !="":
+            
+            if form_data["category"] !="":
+                category=Category.objects.get(id=form_data["category"])
+            else:
+                category = None
+            
             post = Post.objects.create(
                 title=form_data["title"],
                 text=form_data["text"],
+                category=category,
                 author=request.user,
                 published_date=timezone.now()
             )
             
             return redirect('post_detail', pk=post.id)
             
-    return render(request, "blog/post_write.html")
+    categories = Category.objects.all()
+            
+    return render(request, "blog/post_edit.html", {"categories": categories})
 
 
 def user_login(request):
@@ -80,12 +94,21 @@ def post_edit(request, pk):
         
         title=request.POST["title"]
         text=request.POST["text"]
+        category_id=request.POST["category"]
+        
+        if category_id != "":
+            category = Category.objects.get(id=category_id)
+        else:
+            category = None
         
         post.title = title
         post.text = text
+        post.category = category
         
         post.save()
         
         return redirect("post_detail", pk=post.id)
     
-    return render(request,"blog/post_edit.html", {"post": post})
+    categories = Category.objects.all()
+    
+    return render(request,"blog/post_edit.html", {"post": post, "categories": categories})

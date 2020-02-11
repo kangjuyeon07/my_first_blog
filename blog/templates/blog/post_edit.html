@@ -1,27 +1,113 @@
 {% extends 'blog/base.html' %}
 
 {% block body %}
-    <form id="post-form" method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="title">글 제목</label>
-            <input id="title" type="text" name="title" placeholder="Title" value="{{ post.title }}"/>
-        </div>
-        <div>
-            <label for="text">글 본문</label>
-            <input id="title" type="text" name="text" placeholder="Text" value="{{ post.text }}"/>
-        </div>
-        <div>
-            <input type="submit" value="저장"/>
-        </div>
-    </form>
-{% endblock %}
+    <body onload="init();">
+        <form id="post-form" method="POST">
+            {% csrf_token %}
+            <div>
+                <input id="title" 
+                       class="title" 
+                       type="text" 
+                       name="title" 
+                       placeholder="Title" 
+                       value="{{ post.title }}"/>
+            </div>
 
+            <select name="category" class="category">
+                <option value="">Select Category</option>
+                {% for category in categories %}
+
+                    {% if category == post.category %}
+                    <option value="{{ category.id }}" selected="selected">{{ category.title }}</option>
+                    {% else %}
+                    <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <div>
+                <textarea id="text" name="text" placeholder="Text" rows=10>{{ post.text }}</textarea>
+            </div>
+        </form>
+    </body>
+{% endblock %}
+        
 {% block script %}
+    <script>
+        var observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on'+event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function init () {
+            var text = document.getElementById('text');
+            function resize () {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight+'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize () {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change',  resize);
+            observe(text, 'cut',     delayedResize);
+            observe(text, 'paste',   delayedResize);
+            observe(text, 'drop',    delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+    </script>
+
+
     <script>
         shortcuts["s"] = function(e) {
             e.preventDefault();
             document.getElementById("post-form").submit();
         }
+        
+        function decorate_text(deco) {
+            const text = document.getElementById("text");
+            const value = text.value;
+            const start = text.selectionStart;
+            const end = text.selectionEnd;
+            
+            
+            if (value.substring(start - deco.length, start) === deco &&
+                value.substring(end, end + deco.length) === deco
+            ) {
+                new_value = value.substring(0, start - deco.length) +
+                    value.substring(start, end) +
+                    value.substring(end + deco.length, value.length)
+                
+                selectionStart = start - deco.length;
+                selectionEnd = end - deco.length;
+            } else {
+                new_value = value.substring(0, start) + 
+                deco + value.substring(start, end) + deco + 
+                value.substring(end, value.length);
+                
+                selectionStart = start + deco.length;
+                selectionEnd = end + deco.length;
+            }
+            
+        
+            text.value = new_value
+            
+            text.selectionStart = selectionStart;
+            text.selectionEnd = selectionEnd;
+        }
+        
+        shortcuts["b"] = () => decorate_text("**");
+        shortcuts["i"] = () => decorate_text("*");
+        
     </script>
 {% endblock %}

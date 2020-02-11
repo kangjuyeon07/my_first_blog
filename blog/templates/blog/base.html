@@ -8,7 +8,12 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <script src="semantic/dist/semantic.min.js"></script>
+        
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        
+        
     </head>
     
     <body>
@@ -59,6 +64,13 @@
     {% endif %}
     
 </nav>
+   
+        <div id = "sidebar" class = "sidebar">
+            {% for category in categories %}
+                <a href="">{{ category.title }}</a>
+            {% endfor %}
+        </div>
+        
         <div class="app-container">
         {% block body %}
         {% endblock %} 
@@ -88,6 +100,21 @@
         }
         
         const shortcuts = {};
+            
+            
+        let show_sidebar = false;
+            
+        shortcuts["l"] = function(e) {
+            show_sidebar = !show_sidebar;
+            sidebar = document.getElementById("sidebar");
+            if (show_sidebar) {
+                sidebar.style.setProperty("width", "250px");
+            } else {
+                sidebar.style.setProperty("width", "0px");
+            }
+        }
+            
+            
         </script>
         {% block script %}
         {% endblock %}

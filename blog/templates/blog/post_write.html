@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+<!-- {% extends 'blog/base.html' %}
 
 {% block body %}
     <form id="post-form" method="POST">
@@ -7,9 +7,17 @@
             <label for="title">글 제목</label>
             <input id="title" type="text" name="title" placeholder="Title" />
         </div>
+        
+        <select name="category">
+            <option value="">Select Category</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.title }}</option>
+            {% endfor %}
+        </select>
+        
         <div>
             <label for="text">글 본문</label>
-            <input id="title" type="text" name="text" placeholder="Text" />
+            <textarea id="text" name="text" placeholder="Text">{{ post.text }}</textarea>
         </div>
         <div>
             <input type="submit" value="저장"/>
@@ -24,5 +32,5 @@
             document.getElementById("post-form").submit();
         }
     </script>
-{% endblock %}
+{% endblock %} -->
 
