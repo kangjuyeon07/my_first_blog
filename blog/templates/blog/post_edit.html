@@ -2,7 +2,7 @@
 
 {% block body %}
     <body onload="init();">
-        <form id="post-form" method="POST">
+        <form id="post-form" class="post-detail" method="POST">
             {% csrf_token %}
             <div>
                 <input id="title" 

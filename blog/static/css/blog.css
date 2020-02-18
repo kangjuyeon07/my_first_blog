@@ -1,12 +1,17 @@
 
 .app-container {
-    padding: 48px 10%;
+    padding: 48px 18%;
+    
 }
 
 .post-item {
-    margin-bottom: 30px;
+    margin: 25px 0;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0,0,0,.125); 
+}
+
+.post-item .title {
+    margin-bottom: 4px;
 }
 
 .post-item .title a {
@@ -15,15 +20,66 @@
     font-weight: bold;
 }
 
-.post-detail .date {
+.post-item .description {
+    color: grey;
+    margin-bottom: 5px;
+}
+
+.post-item .body {
+    font-size: 16px;
+    height: 99px;
+    overflow: hidden;
+    color: #555;
+}
+
+.post-detail .title {
+    font-size: 28px;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.post-detail .description {
     color: grey;
     font-size: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid black;
 }
 
 .post-detail .body {
     margin-top: 24px;
+    line-height: 2.2;
+    padding: 12px 0 18px 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin: 24px 0 18px 0;
+}
+
+.post-detail .body h1 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.post-detail .body h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-detail .body h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post-detail .body h4 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-detail .body h5 {
+    font-size: 15px;
+    font-weight: bold;
+}
 
 .auth-form {
     text-align: center;
@@ -61,7 +117,8 @@
 }
 
 .navbar {
-    padding: 12px 5% 12px 10%;
+    padding: 15px 5% 15px 10%;
+    background-color: black !important;
 }
 
 .sidebar {
@@ -73,6 +130,7 @@
     left: 0;
     padding-top: 60px;
     background-color: black;
+    text-align: center;
     overflow-x: hidden;
     transition: 0.5s;
     white-space: nowrap;
@@ -83,7 +141,7 @@
     text-decoration: none;
     font-size: 17px;
     display: block;
-    color: #818181;
+    color: white;
 }
 
 textarea {
@@ -94,11 +152,12 @@ textarea {
     outline: none;
     width: 100%;
     margin-bottom: 36px;
+    line-height: 2.2;
 }
 
 #post-form .title {
     border: none;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -123,3 +182,9 @@ textarea {
     font-size: 16px;
     color: grey
 }
+
+p {
+    line-height: 2.2;
+    margin: 0;
+}
+

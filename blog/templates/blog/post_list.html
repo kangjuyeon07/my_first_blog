@@ -5,8 +5,8 @@
             {% for post in post_list %}
                 <div class="post-item">
                    <div class="title"><a href="{% url 'post_detail' pk=post.id %}">{{ post.title }}</a></div> 
-                    <p>{{ post.category }} | {{ post.published_date }}</p>
-                    <p>{{ post.text }}</p>
+                    <div class="description">{{ post.category }}</div>
+                    <div class="body">{{ post.text }}</div>
                 </div>
             {% endfor %}
         </div>
