@@ -5,7 +5,7 @@
 }
 
 .post-item {
-    margin: 25px 0;
+    margin: 25px 3;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0,0,0,.125); 
 }
@@ -16,25 +16,25 @@
 
 .post-item .title a {
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .post-item .description {
     color: grey;
     margin-bottom: 5px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .post-item .body {
-    font-size: 15px;
-    height: 93px;
+    font-size: 14px;
+    height: 85px;
     overflow: hidden;
     color: #555;
 }
 
 .post-detail .title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     width: 100%;
     margin-top: 24px;
@@ -43,16 +43,17 @@
 
 .post-detail .description {
     color: grey;
-    font-size: 16px;
+    font-size: 15px;
     padding-bottom: 24px;
     border-bottom: 1px solid black;
 }
 
 .post-detail .body {
     margin-top: 24px;
-    line-height: 2.4;
+    line-height: 2.5;
     padding: 12px 0 18px 0;
     word-break: keep-all;
+    font-size: 14.5px;
 }
 
 .post-detail .body p {
@@ -64,12 +65,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-detail .body h1 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .post-detail .body h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -124,8 +125,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    padding: 15px 5% 15px 10%;
+    padding: 15px 5% 15px 8%;
     background-color: black !important;
+    height: 65px;
+}
+
+.navbar-brand{
+    font-size: 18px;
+}
+
+.nav-link{
+    font-size: 15px;
 }
 
 .sidebar {
