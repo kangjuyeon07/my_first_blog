@@ -16,10 +16,14 @@
         
         body.innerHTML = innerHTML.replace(
             /--&gt;/gi, "&rightarrow;"
-        ) .replace(
+        ).replace(
             /^(\r\n|\n|\r|\s*)$/gm, "&nbsp;\n"
-        ) .replace(
+        ).replace(
             /$/gm, "  "
+        ).replace(
+            /\*{2}([^\*]+?)\*{2}/gi, "<strong>$1</strong>" 
+        ).replace(
+            /\*{1}([^\*]+?)\*{1}/gi, "<em>$1</em>"
         );
         
         body.innerHTML = marked(body.innerHTML);
